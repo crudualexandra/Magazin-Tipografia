@@ -1,0 +1,67 @@
+---
+// Main layout: holds the shared <head>, Topbar and Header/Nav.
+// Pages render their content via <slot />.
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
+const {
+  title = 'Magazin Tipografia — Nisporeni',
+  description =
+    'Magazin Tipografia — magazin alimentar în Nisporeni. Fructe, legume, cereale, băuturi și produse pentru curățenie. Program de lucru afișat. Comenzi pe WhatsApp.',
+} = Astro.props;
+
+// Import the existing CSS globally (same styling logic, now bundled by Astro/Vite).
+import '../styles/reset.css';
+import '../styles/style.css';
+
+// Vite provides BASE_URL which includes Astro's configured `base` (useful for GitHub Pages).
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Magazin Tipografia, Nisporeni" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <!-- Top announcement bar -->
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <p class="topbar__text">
+          📍 Nisporeni • Produse alimentare & casă • <strong>Deschis acum</strong>
+        </p>
+      </div>
+    </div>
+
+    <!-- Header + Navigation -->
+    <header class="header">
+      <div class="container header__inner">
+        <a class="brand" href="#home" aria-label="Magazin Tipografia - Acasă">
+          <img class="brand__logo" src={`${base}1.jpg`} alt="Logo Magazin Tipografia" />
+          <span class="brand__text">
+            <span class="brand__name">Magazin Tipografia</span>
+            <span class="brand__tag">Magazin alimentar • Nisporeni</span>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Navigație principală">
+          <a class="nav__link" href="#produse">Produse</a>
+          <a class="nav__link" href="#de-ce">De ce noi</a>
+          <a class="nav__link" href="#recenzii">Recenzii</a>
+          <a class="nav__link" href="#orar">Orar</a>
+          <a class="nav__link nav__link--cta" href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <slot />
+  </body>
+</html>

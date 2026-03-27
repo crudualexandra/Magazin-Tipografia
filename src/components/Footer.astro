@@ -1,0 +1,11 @@
+---
+// Footer (static site): year is resolved at build time.
+// We keep the same markup as the original HTML (including id="year").
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <p class="footer__copy">© <span id="year">{year}</span> Magazin Tipografia • Nisporeni</p>
+  </div>
+</footer>
